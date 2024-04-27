@@ -1,0 +1,468 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TODO App",
+    "description": "This is a simple ssr todo app, the main focused of it is to learn how to use nodejs with no express and make a full aplication.",
+    "contact": {
+      "email": "isaias-santiago-toribio@outlook.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080/swagger"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Users",
+      "description": "Access to the users endpoint"
+    },
+    {
+      "name": "Tasks",
+      "description": "Access to the tasks endpoint"
+    }
+  ],
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create a new user.",
+        "operationId": "createUser",
+        "requestBody": {
+          "description": "Create a new user in the todo app.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get all the users.",
+        "operationId": "getAllUsers",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/userID": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get a user by it's id.",
+        "operationId": "getUserByID",
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "query",
+            "description": "User unique ID",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update an existing user",
+        "description": "Update an existing user by Id",
+        "operationId": "updateUser",
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "query",
+            "description": "User unique ID",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Update an existent user in the todo app",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NoIdUser"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Delete an existing user",
+        "description": "Delete an existing user by Id",
+        "operationId": "deleteUser",
+        "parameters": [
+          {
+            "name": "userID",
+            "in": "query",
+            "description": "User unique ID",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tasks": {
+      "post": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Create a new task.",
+        "operationId": "createTask",
+        "requestBody": {
+          "description": "Create a new task in the todo app.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Task"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successfully created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Get all the tasks.",
+        "operationId": "getAllTasks",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Task"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tasks/taskID": {
+      "get": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Get a task by it's id.",
+        "operationId": "getTaskById",
+        "parameters": [
+          {
+            "name": "taskID",
+            "in": "query",
+            "description": "Task unique ID",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Update an existing task",
+        "description": "Update an existing task by Id",
+        "operationId": "updateTask",
+        "parameters": [
+          {
+            "name": "taskID",
+            "in": "query",
+            "description": "Task unique ID",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Update an existent task in the todo app",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NoIdTask"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Task not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "Delete an existing task",
+        "description": "Delete an existing task by Id",
+        "operationId": "deleteTask",
+        "parameters": [
+          {
+            "name": "taskID",
+            "in": "query",
+            "description": "Task unique ID",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Task"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "NoIdUser": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "example": "UserName"
+          },
+          "firstName": {
+            "type": "string",
+            "example": "John"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "James"
+          },
+          "email": {
+            "type": "string",
+            "example": "john@email.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "12345!ta"
+          },
+          "phone": {
+            "type": "string",
+            "example": "+1 (888) 888-8888"
+          },
+          "userStatus": {
+            "type": "boolean",
+            "description": "User Status",
+            "format": "boolean",
+            "example": true
+          }
+        }
+      },
+      "User": {
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "example": "507f1f77bcf86cd799439011"
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/NoIdUser"
+          }
+        ]
+      },
+      "NoIdTask": {
+        "type": "object",
+        "properties": {
+          "taskName": {
+            "type": "string",
+            "example": "Name"
+          },
+          "taskDescription": {
+            "type": "string",
+            "example": "Do this today"
+          },
+          "taskDetailedDescription": {
+            "type": "string",
+            "example": "MarkDown description"
+          },
+          "dueToDate": {
+            "type": "string",
+            "example": "10/02/2024"
+          },
+          "createdAt": {
+            "type": "string",
+            "example": "10/02/2024"
+          },
+          "taskStatus": {
+            "type": "number",
+            "description": "User Status",
+            "format": "int32",
+            "example": 1
+          }
+        }
+      },
+      "Task": {
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "example": "507f1f77bcf86cd799439011"
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/NoIdTask"
+          }
+        ]
+      }
+    }
+  }
+}
