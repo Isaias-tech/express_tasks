@@ -1,0 +1,44 @@
+{
+  "name": "express_tasks",
+  "version": "1.0.0",
+  "description": "ExpressTasks is a sleek, fast, and easy-to-use To-Do application built using Express.js, designed to help you manage your daily tasks efficiently. This application provides a minimalist interface that allows users to quickly add, edit, and delete tasks, ensuring that staying organized is both intuitive and hassle-free.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage",
+    "dev": "npx nodemon --watch ./src ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Isaias-tech/express_tasks.git"
+  },
+  "keywords": [
+    "todo",
+    "express.js",
+    "mongodb",
+    "swagger",
+    "jest"
+  ],
+  "author": "Isaias-tech",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Isaias-tech/express_tasks/issues"
+  },
+  "homepage": "https://github.com/Isaias-tech/express_tasks#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.3.2",
+    "morgan": "^1.10.0",
+    "swagger-ui-express": "^5.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.4",
+    "@babel/preset-env": "^7.24.4",
+    "@jest/globals": "^29.7.0",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.0",
+    "supertest": "^7.0.0"
+  }
+}
