@@ -1,6 +1,18 @@
 const dotenv = require("dotenv");
 dotenv.config({ path: `${__dirname}/../.env` });
 
+const mongoose = require("mongoose");
+
+const connectDB = async () => {
+	try {
+		await mongoose.connect(process.env.MONGODB_URI, {});
+		console.log("Database connected successfully");
+	} catch (error) {
+		console.error("Database connection error", error);
+		process.exit(1);
+	}
+};
+
 const app = require("./app.js");
 const routerV1 = require("./routes/router.v1");
 
@@ -8,8 +20,34 @@ const PORT = process.env.PORT || 8000;
 
 app.use("/v1", routerV1);
 
-const server = app.listen(PORT, () => {
-	console.log(`Server running at http://localhost:${PORT}`);
-});
+const startServer = async () => {
+	try {
+		await connectDB();
+		const server = app.listen(PORT, () => {
+			console.log(`Server running at http://localhost:${PORT}`);
+		});
 
-module.exports = server;
+		process.on("SIGINT", () => {
+			console.log("Received SIGINT. Shutting down gracefully...");
+			server.close(() => {
+				console.log("Server has shut down");
+				process.exit(0);
+			});
+		});
+
+		process.on("SIGTERM", () => {
+			console.log("Received SIGTERM. Shutting down gracefully...");
+			server.close(() => {
+				console.log("Server has shut down");
+				process.exit(0);
+			});
+		});
+
+		module.exports = server;
+	} catch (error) {
+		console.error("Error starting server", error);
+		process.exit(1);
+	}
+};
+
+startServer();
