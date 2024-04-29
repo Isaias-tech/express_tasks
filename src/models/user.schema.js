@@ -26,7 +26,6 @@ const userSchema = new mongoose.Schema({
 	updatedAt: {
 		type: Date,
 		default: Date.now,
-		onupdate: Date.now,
 	},
 	createAt: {
 		type: Date,
@@ -38,7 +37,7 @@ const userSchema = new mongoose.Schema({
 		enum: ["active", "inactive", "deleted"],
 		default: "active",
 	},
-});
+}, { timestamps: true });
 
 userSchema.method.remove = function() {
 	throw new Error("Remove function has been disabled for this schema");
