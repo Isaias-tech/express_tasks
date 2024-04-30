@@ -19,15 +19,25 @@ const userSchema = new mongoose.Schema({
 		required: true,
 		unique: true,
 	},
+	profileImageUrl: {
+		type: String,
+		required: false,
+		default: "https://res.cloudinary.com/dj0hodqpr/image/upload/v1714485007/alarufpdwxfpy6e4db3x.png",
+	},
 	password: {
 		type: String,
+		required: true,
+	},
+	genre: {
+		type: String,
+		enum: ["Male", "Female"],
 		required: true,
 	},
 	updatedAt: {
 		type: Date,
 		default: Date.now,
 	},
-	createAt: {
+	createdAt: {
 		type: Date,
 		default: Date.now,
 		immutable: true,
@@ -37,7 +47,7 @@ const userSchema = new mongoose.Schema({
 		enum: ["active", "inactive", "deleted"],
 		default: "active",
 	},
-}, { timestamps: true });
+}, { timestamps: true, collection: "users" });
 
 userSchema.method.remove = function() {
 	throw new Error("Remove function has been disabled for this schema");

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ExpressTasks - Sign Up</title>
+    <link rel="icon" href="assets/logo-cwbg.png">
+    <link rel="stylesheet" href="card.css">
+</head>
+<body>
+<a href="/">
+    <h1>ExpressTasks</h1>
+</a>
+<div class="card-container">
+    <div class="card-header">
+        <h2>Sign Up</h2>
+    </div>
+    <div class="card-body">
+        <div class="input-group">
+            <label for="username">Username: </label>
+            <input type="text" id="username" name="username" placeholder="Username" autocomplete="off">
+        </div>
+        <div class="input-group">
+            <label for="name">Name: </label>
+            <input type="text" id="name" name="name" placeholder="John" autocomplete="off">
+        </div>
+        <div class="input-group">
+            <label for="last-name">Last name: </label>
+            <input type="text" id="last-name" name="last-name" placeholder="Johnson" autocomplete="off">
+        </div>
+        <div class="input-group">
+            <label for="email">Email: </label>
+            <input type="email" id="email" name="email" placeholder="example@mail.com" autocomplete="off">
+        </div>
+        <div class="input-group">
+            <label for="password">Password: </label>
+            <input type="password" id="password" name="password" placeholder="*******" autocomplete="off">
+        </div>
+        <div class="input-group">
+            <label for="genre">Genre: </label>
+            <select name="genre" id="genre">
+                <option>Select...</option>
+                <option>Male</option>
+                <option>Female</option>
+            </select>
+        </div>
+    </div>
+    <div class="card-actions">
+        <a href="sign-in" class="btn">Login</a>
+        <a class="btn" id="sign-up">Sign Up</a>
+    </div>
+</div>
+<script defer src="scripts/signUp.js"></script>
+</body>
+</html>

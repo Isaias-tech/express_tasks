@@ -19,6 +19,18 @@ const routerV1 = require("./routes/router.v1");
 const PORT = process.env.PORT || 8000;
 
 app.use("/v1", routerV1);
+app.get("/", (req, res) => {
+	res.render("index");
+});
+app.get("/sign-in", (req, res) => {
+	res.render("sign-in");
+});
+app.get("/sign-up", (req, res) => {
+	res.render("sign-up");
+});
+app.get("/tasks", (req, res) => {
+	res.render("tasks");
+});
 
 const startServer = async () => {
 	try {

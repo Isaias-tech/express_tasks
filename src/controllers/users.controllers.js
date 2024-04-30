@@ -1,9 +1,8 @@
-const User = require("../models/user.schema.js");
+const User = require("../schemas/user.schema.js");
 
 const createUser = async (req, res) => {
 	try {
-		const { userName, name, lastName, email, password } = req.body;
-		const newUser = new User({ userName, name, lastName, email, password });
+		const newUser = new User(req.body);
 		await newUser.save();
 		res.status(201).json(newUser);
 	} catch (error) {
@@ -51,10 +50,12 @@ const updateUser = async (req, res) => {
 const deleteUser = async (req, res) => {
 	try {
 		const { id } = req.params;
-		const user = await User.findByIdAndUpdate(id, { status: "deleted" }, {});
+		const user = await User.findByIdAndUpdate(id, { status: "deleted" }, { new: true });
 		if (!user) {
 			res.status(404).json({ error: "User not found" });
+			return;
 		}
+		res.status(204).json();
 	} catch (error) {
 		res.status(400).json({ error: error.message });
 	}
