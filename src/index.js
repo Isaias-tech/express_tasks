@@ -1,37 +1,22 @@
+// Configure the environment variables
 const dotenv = require("dotenv");
 dotenv.config({ path: `${__dirname}/../.env` });
 
-const mongoose = require("mongoose");
-
-const connectDB = async () => {
-	try {
-		await mongoose.connect(process.env.MONGODB_URI, {});
-		console.log("Database connected successfully");
-	} catch (error) {
-		console.error("Database connection error", error);
-		process.exit(1);
-	}
-};
-
+// Import the app and routers
 const app = require("./app.js");
 const routerV1 = require("./routes/router.v1");
+const viewsRouter = require("./routes/views.router");
+// Import the database connection
+const connectDB = require("./config/dbconnection");
 
+// Set the port
 const PORT = process.env.PORT || 8000;
 
+// Set the routes
 app.use("/v1", routerV1);
-app.get("/", (req, res) => {
-	res.render("index");
-});
-app.get("/sign-in", (req, res) => {
-	res.render("sign-in");
-});
-app.get("/sign-up", (req, res) => {
-	res.render("sign-up");
-});
-app.get("/tasks", (req, res) => {
-	res.render("tasks");
-});
+app.use("/", viewsRouter);
 
+// Start the server
 const startServer = async () => {
 	try {
 		await connectDB();
@@ -39,6 +24,7 @@ const startServer = async () => {
 			console.log(`Server running at http://localhost:${PORT}`);
 		});
 
+		// Handle the unhandled promise rejections
 		process.on("SIGINT", () => {
 			console.log("Received SIGINT. Shutting down gracefully...");
 			server.close(() => {
@@ -47,6 +33,7 @@ const startServer = async () => {
 			});
 		});
 
+		// Handle the unhandled promise rejections
 		process.on("SIGTERM", () => {
 			console.log("Received SIGTERM. Shutting down gracefully...");
 			server.close(() => {
@@ -62,4 +49,5 @@ const startServer = async () => {
 	}
 };
 
-startServer();
+// Export and execute the server
+module.exports = startServer();

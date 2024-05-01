@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+
+main {
+    height: calc(100vh - 250px);
+}
+
+.card-container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 385px;
+    grid-row: 3/12;
+}
+
+.card-header {
+    color: #333;
+    font-size: 1.5rem;
+    font-weight: 400;
+    padding: 10px;
+    text-align: center;
+
+    h2 {
+        margin: 5px;
+        color: rgb(42, 193, 174);
+    }
+}
+
+.card-body {
+    width: 100%;
+
+    .input-group {
+        display: flex;
+        flex-direction: column;
+        margin: 10px 0;
+
+        label {
+            font-size: 1rem;
+            margin-bottom: 5px;
+            color: #333333;
+        }
+
+        input, select {
+            border: 2px solid #333;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+
+            width: 100%;
+            display: inline-block;
+            box-sizing: border-box;
+            transition-duration: .1s;
+
+            &:focus {
+                outline: none;
+                border-color: rgb(42, 193, 174);
+            }
+        }
+    }
+}
+
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+
+    a:first-child {
+        border: 1px solid rgb(42, 193, 174);
+        border-radius: 5px;
+        padding: 10px 20px;
+        color: rgb(42, 193, 174);
+        width: 35%;
+        text-align: center;
+
+        &:hover {
+            background-color: rgb(42, 193, 174);
+            color: #f4f4f4;
+            border-radius: 5px;
+        }
+    }
+
+    a:last-child {
+        background-color: rgb(42, 193, 174);
+        border: 1px solid rgb(42, 193, 174);
+        color: #fff;
+        border-radius: 5px;
+        padding: 10px 20px;
+        width: 35%;
+        text-align: center;
+
+        &:hover {
+            background-color: #f4f4f4;
+            color: rgb(42, 193, 174);
+            border: 1px solid rgb(42, 193, 174);
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    }
+}
+
+.card-container.two-columns {
+    width: calc(385px * 2);
+}
+
+.card-body.two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+}

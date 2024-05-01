@@ -1,16 +1,23 @@
+// Import the required modules
+const compression = require("compression");
+const { join } = require("node:path");
+const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
-const compression = require("compression");
 
-const express = require("express");
-const { join } = require("node:path");
+// Create the express app
 const app = express();
 
+// Configure the app
+app.use(morgan("dev"));
+app.use(express.json());
 app.use(compression());
 app.use(cors());
-app.use(express.json());
-app.use(morgan("dev"));
-app.set("view engine", "ejs");
-app.use(express.static(join(__dirname, "..", "views", "static")));
 
+// Set the view engine and static folder
+app.set("view engine", "ejs");
+app.set("views", join(__dirname, "views", "pages"));
+app.use(express.static(join(__dirname, "views", "static")));
+
+// Export the app
 module.exports = app;
