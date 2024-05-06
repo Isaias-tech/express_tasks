@@ -8,20 +8,75 @@
     <title>ExpressTasks - Task</title>
     <link rel="icon" href="assets/logo-cwbg.png">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="card.css">
     <link rel="stylesheet" href="styles/tasks.css">
 </head>
 <body>
 <header>
-    <a href="#">
-        <h1>ExpressTasks</h1>
-    </a>
+    <nav>
+        <a href="tasks">
+            <h1>ExpressTasks</h1>
+        </a>
+        <div class="drop-down">
+            <button class="drop-down-btn">
+                <div class="profile-picture-container">
+                    <img src="assets/m_avatar.svg" alt="User">
+                </div>
+                <span class="user-name">
+                    John Doe
+                </span>
+            </button>
+            <div class="drop-down-content">
+                <a href="#">Profile</a>
+                <a href="#">Settings</a>
+                <a href="/">Logout</a>
+            </div>
+        </div>
+    </nav>
 </header>
 <main>
-
+    <section class="tasks-form">
+        <div class="card-container">
+            <div class="card-header">
+                <h2>New Task</h2>
+            </div>
+            <div class="card-body">
+                <div class="input-group">
+                    <label for="task-name">Task name: </label>
+                    <input type="text" id="task-name" name="task-name" placeholder="Task name" autocomplete="off">
+                </div>
+                <div class="input-group">
+                    <label for="description">Description: </label>
+                    <input type="text" id="description" name="description" placeholder="..." autocomplete="off">
+                </div>
+                <div class="input-group">
+                    <label for="tags">Tags: </label>
+                    <select name="tags" id="tags" disabled>
+                        <option value="default" selected>Select tag...</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="due-date">Due date: </label>
+                    <input type="date" id="due-date" name="due-date" placeholder="..." autocomplete="off">
+                </div>
+                <div class="input-group">
+                    <label for="priority">Priority: </label>
+                    <input type="text" id="priority" name="priority" placeholder="..." autocomplete="off">
+                </div>
+            </div>
+            <div class="card-actions">
+                <a class="btn-outlined">Clear</a>
+                <a class="btn">Save</a>
+            </div>
+        </div>
+    </section>
+    <section class="task-list">
+    </section>
 </main>
 <footer>
     <p>Manage your tasks efficiently with ExpressTasks!</p>
     <p>&copy; 2024 ExpressTasks. All rights reserved.</p>
 </footer>
+<script src="scripts/tasks.js"></script>
 </body>
 </html>

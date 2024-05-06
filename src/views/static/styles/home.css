@@ -61,9 +61,8 @@ main {
     width: 100%;
 
     section {
-        height: calc(100vh - 230px);
-
-
+        height: calc(100vh - 220px);
+        
         h2 {
             font-family: "Dancing Script", cursive;
             font-optical-sizing: auto;

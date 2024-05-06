@@ -1,4 +1,5 @@
 const User = require("../schemas/user.schema.js");
+const jwt = require("jsonwebtoken");
 
 const createUser = async (req, res) => {
 	try {
@@ -33,6 +34,36 @@ const getUserById = async (req, res) => {
 	}
 };
 
+const signIn = async (req, res) => {
+	try {
+		const { userName, password } = req.body;
+		const user = await User.findOne({ userName, password, status: { $ne: "deleted" } }, {
+			password: 0,
+			"__v": 0,
+		}, { lean: true });
+		if (!user) {
+			res.status(404).json({ error: "User not found" });
+			return;
+		}
+		delete user.password;
+		delete user.status;
+		delete user.createdAt;
+		delete user.updatedAt;
+
+		jwt.sign(user, process.env.SECRET_JWT_KEY, { expiresIn: "15m" }, (err, token) => {
+			if (err) {
+				res.status(500).json({ error: err.message });
+				return;
+			}
+			res.cookie("token", token, { httpOnly: true });
+			res.json({ ...user });
+			res.redirect("/tasks");
+		});
+	} catch (error) {
+		res.status(400).json({ error: error.message });
+	}
+};
+
 const updateUser = async (req, res) => {
 	try {
 		const { id } = req.params;
@@ -61,4 +92,4 @@ const deleteUser = async (req, res) => {
 	}
 };
 
-module.exports = { createUser, getAllUsers, getUserById, updateUser, deleteUser };
+module.exports = { createUser, getAllUsers, getUserById, signIn, updateUser, deleteUser };

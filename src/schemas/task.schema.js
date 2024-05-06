@@ -44,7 +44,7 @@ const taskSchema = new mongoose.Schema({
 	status: {
 		type: String,
 		required: true,
-		enum: ["active", "archived"],
+		enum: ["active", "archived", "completed"],
 		default: "active",
 	},
 }, { timestamps: true, collection: "tasks" });

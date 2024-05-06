@@ -1,0 +1,54 @@
+h1 {
+    font-size: 2.5rem;
+}
+
+header {
+    height: 10vh;
+}
+
+nav {
+    max-width: 1000px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-container {
+    width: 285px;
+    justify-content: space-between;
+
+    .btn {
+        width: 80px;
+    }
+
+    .btn-outlined {
+        width: 80px;
+    }
+}
+
+main {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 10px;
+
+    .tasks-form {
+        grid-column: 1/1;
+    }
+
+    .task-list {
+        grid-column: 2/4;
+        width: 675px;
+        height: 88%;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border: 2px solid rgba(0, 0, 0, 0.1);
+    }
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+}

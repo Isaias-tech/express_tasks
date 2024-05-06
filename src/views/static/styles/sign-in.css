@@ -1,3 +1,8 @@
 h1 {
     font-size: 3rem;
 }
+
+footer {
+    position: fixed;
+    bottom: 0;
+}

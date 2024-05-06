@@ -34,10 +34,8 @@ signUpBtn.addEventListener("click", async (e) => {
 		const users = await response.json();
 		console.log(users);
 		if (response.status === 201) {
-			alert("User created successfully");
-			window.location.href = "/tasks";
+			window.location.href = "/sign-in";
 		}
-
 	} else {
 		alert("Please fill all the fields correctly");
 	}

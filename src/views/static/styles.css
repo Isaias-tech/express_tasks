@@ -55,6 +55,133 @@ h2 {
     user-select: none;
 }
 
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+
+    label {
+        font-size: 1rem;
+        margin-bottom: 5px;
+        color: #333333;
+    }
+
+    input, select {
+        border: 2px solid #333;
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 10px;
+
+        width: 100%;
+        display: inline-block;
+        box-sizing: border-box;
+        transition-duration: .1s;
+
+        &:focus {
+            outline: none;
+            border-color: rgb(42, 193, 174);
+        }
+    }
+}
+
+.btn {
+    background-color: rgb(42, 193, 174);
+    border: 1px solid rgb(42, 193, 174);
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px 20px;
+    width: 35%;
+    text-align: center;
+
+    &:hover {
+        background-color: #f4f4f4;
+        color: rgb(42, 193, 174);
+        border: 1px solid rgb(42, 193, 174);
+        border-radius: 5px;
+        cursor: pointer;
+    }
+}
+
+.btn-outlined {
+    border: 1px solid rgb(42, 193, 174);
+    border-radius: 5px;
+    padding: 10px 20px;
+    color: rgb(42, 193, 174);
+    width: 35%;
+    text-align: center;
+
+    &:hover {
+        background-color: rgb(42, 193, 174);
+        color: #f4f4f4;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+}
+
+.drop-down {
+    position: relative;
+    display: inline-block;
+
+    &:hover .drop-down-content {
+        display: block;
+    }
+
+    &:hover .drop-down-btn {
+        background-color: rgb(31, 140, 127);
+        color: #ffffff;
+    }
+
+    .drop-down-btn {
+        border: 2px solid rgb(42, 193, 174);
+        color: rgb(42, 193, 174);
+        align-items: center;
+        border-radius: 10px;
+        text-align: left;
+        font-size: 16px;
+        cursor: pointer;
+        padding: 10px;
+        display: flex;
+        width: 250px;
+    }
+
+    .drop-down-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+
+        a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+
+            &:hover {
+                background-color: #f1f1f1
+            }
+        }
+    }
+}
+
+.profile-picture-container {
+    background-color: #f4f4f4;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin-right: 8px;
+    border: 2px solid rgb(42, 193, 174);
+    display: flex;
+    height: 40px;
+    width: 40px;
+
+    img {
+        width: 100%;
+        object-fit: contain;
+    }
+}
+
 footer {
     box-shadow: 0 -2px 2px gray;
     background-color: #f4f4f4;
